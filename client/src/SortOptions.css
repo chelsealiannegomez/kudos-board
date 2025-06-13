@@ -1,0 +1,12 @@
+.sort-options {
+    height: 5vh;
+    background-color: beige;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.sort-options button {
+    height: 60%;
+    margin: 1%;
+}
