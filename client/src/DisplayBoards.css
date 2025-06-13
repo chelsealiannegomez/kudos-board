@@ -1,0 +1,7 @@
+.display-boards {
+    display: flex;
+    justify-content: center;
+    min-height: 80vh;
+    width: 100%;
+    flex-wrap: wrap;
+}

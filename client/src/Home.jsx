@@ -1,14 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import SortOptions from './SortOptions'
-import CreateNew from './CreateNew'
+import NewBoard from './NewBoard'
 import DisplayBoards from './DisplayBoards';
 import './Home.css'
 
 const Home = ( { home } ) => {
-    const handleBoard = () => {
-        home.setIsHome(false);
-    }
 
     // Handle Search
     const [submittedQuery, setSubmittedQuery] = useState("");
@@ -26,12 +23,21 @@ const Home = ( { home } ) => {
     }
 
     // Handle Create New Button
-    const [isCreateNew, setIsCreateNew] = useState(false);
+    const [selectedBoard, setSelectedBoard] = useState(-1);
 
-    const button = {
-        isCreateNew: isCreateNew,
-        setIsCreateNew: setIsCreateNew
+    const selectBoard = {
+        selectedBoard: selectedBoard,
+        setSelectedBoard: setSelectedBoard
     }
+
+    useEffect (() => {
+        if (selectedBoard === -1) {
+            home.setIsHome(true);
+        }
+        else {
+            home.setIsHome(false);
+        }
+    }, [selectedBoard])
 
     return (
         // <div onClick={handleBoard}>Open</div>
@@ -44,9 +50,9 @@ const Home = ( { home } ) => {
 
             <SortOptions sortMode={sortMode}/>
 
-            <CreateNew button={button}/>
+            <NewBoard/>
 
-            <DisplayBoards sort={sort}/>
+            <DisplayBoards sort={sort} selectBoard={selectBoard} />
         </div>
     )
 }

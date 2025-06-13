@@ -1,0 +1,26 @@
+.board-card {
+    background-color: red;
+    margin: 1vw;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex: 0 1 12%;
+}
+
+.board-card img {
+    width: 90%;
+    height: 100%;
+    margin: 10px;
+    aspect-ratio: 5/6;
+    object-fit: cover;
+}
+
+.board-card h1 {
+    margin: 0;
+}
+
+.board-card p {
+    margin: 5px 0 20px 0;
+}
