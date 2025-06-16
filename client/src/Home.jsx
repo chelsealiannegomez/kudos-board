@@ -5,7 +5,40 @@ import NewBoard from './NewBoard'
 import DisplayBoards from './DisplayBoards';
 import './Home.css'
 
+async function fetchBoards() {
+    try {
+        const response = await fetch('http://localhost:3000/boards', {
+            method: "GET",
+        })
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`)
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
 const Home = ( { home } ) => {
+    const [boards, setBoards] = useState([]);
+
+    // const fetchBoards = async function() {
+    //     try {
+    //         const response = await fetch('http://localhost:3000/boards', {
+    //             method: "GET",
+    //         })
+    //         if (!response.ok) {
+    //             throw new Error(`Response status: ${response.status}`)
+    //         }
+
+    //         const data = await response.json();
+    //         return data;
+    //     } catch (error) {
+    //         console.error(error.message);
+    //     }
+    // } 
 
     // Handle Search
     const [submittedQuery, setSubmittedQuery] = useState("");
@@ -23,22 +56,28 @@ const Home = ( { home } ) => {
     }
 
     // Handle Create New Button
-    const [selectedBoard, setSelectedBoard] = useState(-1);
+    const [boardID, setBoardID] = useState(-1);
 
-    const selectBoard = {
-        selectedBoard: selectedBoard,
-        setSelectedBoard: setSelectedBoard
+    const selectedBoard = {
+        boardID: boardID,
+        setBoardID: setBoardID
     }
 
     useEffect (() => {
-        if (selectedBoard === -1) {
+        if (boardID === -1) {
             home.setIsHome(true);
         }
         else {
             home.setIsHome(false);
         }
-    }, [selectedBoard])
+    }, [boardID])
 
+    useEffect(()=> {
+        fetchBoards().then(data => {
+            setBoards(data);
+        })
+    }, [])
+    
     return (
         // <div onClick={handleBoard}>Open</div>
         <div className="app">
@@ -50,9 +89,9 @@ const Home = ( { home } ) => {
 
             <SortOptions sortMode={sortMode}/>
 
-            <NewBoard/>
+            <NewBoard />
 
-            <DisplayBoards sort={sort} selectBoard={selectBoard} />
+            <DisplayBoards sort={sort} selectedBoard={selectedBoard} boards={boards}/>
         </div>
     )
 }
