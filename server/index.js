@@ -6,6 +6,8 @@ const express = require('express');
 const app = express();
 
 app.use(cors());
+require('dotenv').config();
+const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
 
 const PORT = 3000;
 
@@ -28,8 +30,22 @@ app.get('/boards', async (req, res) => {
 
 // Create board
 app.post('/boards', async (req, res) => {
-    const { category, title, gif_path } = req.body;
+    const { category, title, author, gif_path } = req.body;
     const newBoard = await prisma.board.create({
-        data: { title, category, gif_path }
+        data: { title, category, author, gif_path }
     })
+})
+
+// Add GIF
+app.patch('/boards/:id/gif-path', async (req, res) => {
+    const { gif_path } = req.body;
+    const { id } = req.params;
+
+    const updatedBoard = await prisma.board.update({
+        where: { id: parseInt(id) },
+        data: {
+            gif_path,
+        }
+    })
+    res.json(updatedBoard);
 })

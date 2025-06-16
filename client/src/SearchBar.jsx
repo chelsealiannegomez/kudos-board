@@ -15,7 +15,7 @@ const SearchBar = ( {query} ) => {
         setSearchQuery("");
     }
     return (
-        <form onSubmit={handleSearch}>
+        <form onSubmit={handleSearch} className="search">
             <input type="text" value={searchQuery} placeholder="Search" onChange={(event) => setSearchQuery(event.target.value)} className="search-bar"/>
             <button type="submit">Search</button>
             <button type="button" onClick={clearInput}>Clear</button>

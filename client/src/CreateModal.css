@@ -38,3 +38,7 @@ span {
 span:hover {
     color: grey;
 }
+
+form {
+    display: block;
+}

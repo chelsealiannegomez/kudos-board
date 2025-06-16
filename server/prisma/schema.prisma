@@ -19,5 +19,6 @@ model Board {
   id        Int      @id @default(autoincrement())
   title     String
   category  String
+  author    String
   gif_path  String
 }

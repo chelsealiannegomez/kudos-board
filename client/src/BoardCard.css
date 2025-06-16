@@ -19,8 +19,15 @@
 
 .board-card h1 {
     margin: 0;
+    font-size: 20px;
+}
+
+.board-card h2 {
+    margin: 5px;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .board-card p {
-    margin: 5px 0 20px 0;
+    margin: 0 0 20px 0;
 }

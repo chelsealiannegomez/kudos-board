@@ -23,22 +23,7 @@ async function fetchBoards() {
 
 const Home = ( { home } ) => {
     const [boards, setBoards] = useState([]);
-
-    // const fetchBoards = async function() {
-    //     try {
-    //         const response = await fetch('http://localhost:3000/boards', {
-    //             method: "GET",
-    //         })
-    //         if (!response.ok) {
-    //             throw new Error(`Response status: ${response.status}`)
-    //         }
-
-    //         const data = await response.json();
-    //         return data;
-    //     } catch (error) {
-    //         console.error(error.message);
-    //     }
-    // } 
+    const [createdNew, setCreatedNew] = useState(false);
 
     // Handle Search
     const [submittedQuery, setSubmittedQuery] = useState("");
@@ -63,6 +48,11 @@ const Home = ( { home } ) => {
         setBoardID: setBoardID
     }
 
+    const createNew = {
+        createdNew: createdNew,
+        setCreatedNew: setCreatedNew
+    }
+
     useEffect (() => {
         if (boardID === -1) {
             home.setIsHome(true);
@@ -73,10 +63,11 @@ const Home = ( { home } ) => {
     }, [boardID])
 
     useEffect(()=> {
+        console.log(createdNew);
         fetchBoards().then(data => {
             setBoards(data);
         })
-    }, [])
+    }, [createdNew])
     
     return (
         // <div onClick={handleBoard}>Open</div>
@@ -89,7 +80,7 @@ const Home = ( { home } ) => {
 
             <SortOptions sortMode={sortMode}/>
 
-            <NewBoard />
+            <NewBoard createNew={createNew}/>
 
             <DisplayBoards sort={sort} selectedBoard={selectedBoard} boards={boards}/>
         </div>

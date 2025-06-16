@@ -2,7 +2,7 @@ import { useState } from 'react';
 import CreateModal from "./CreateModal";
 import './NewBoard.css'
 
-const CreateNew = ( {  } ) => {
+const CreateNew = ( { createNew } ) => {
 
     const handleClick = () => {
         setStyle({display: "flex"});
@@ -19,7 +19,7 @@ const CreateNew = ( {  } ) => {
     return (
         <div className="create">
             <button onClick={handleClick}>Create New</button>
-            <CreateModal setVisibility={setVisibility}/>
+            <CreateModal setVisibility={setVisibility} createNew={createNew}/>
         </div>
     )
 }
