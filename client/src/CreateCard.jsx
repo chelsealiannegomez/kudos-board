@@ -1,7 +1,8 @@
 import { useState } from 'react'; 
+import GifComponent from './GifComponent';
 import './CreateModal.css';
 
-const CreateCard = ( { setVisibility, changes } ) => {
+const CreateCard = ( { setVisibility, changes, boardID } ) => {
     const { style, setStyle } = setVisibility;
     // const { isChange, setIsChange } = changes;
 
@@ -18,16 +19,17 @@ const CreateCard = ( { setVisibility, changes } ) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = { title, author, category };
+        const formData = { title, author, message };
 
         formData.upvotes = 0;
         formData.pinned = false;
+        
 
         setStyle({display: "none"});
         
         try {
             
-            const response = await fetch (`http://localhost:3000/boards`, {
+            const response = await fetch (`http://localhost:3000/boards/${boardID}}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
@@ -46,9 +48,10 @@ const CreateCard = ( { setVisibility, changes } ) => {
             <div className="modal-content">
                 <span onClick={handleExit}>&times;</span>
                 <form onSubmit={handleSubmit}>
-                    <label>Title: <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}/></label> <br />
-                    <label>Message: <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)}/></label> <br />
-                    <label>Author: <input type="text" value={message} onChange={(e) => setMessage(e.target.value)}/></label> <br />
+                    <label>Title: <input type="text" value={title} placeholder="" onChange={(e) => setTitle(e.target.value)}/></label> <br />
+                    <label>Message: <input type="text" value={author} placeholder="" onChange={(e) => setAuthor(e.target.value)}/></label> <br />
+                    <label>Author: <input type="text" value={message}placeholder="" onChange={(e) => setMessage(e.target.value)}/></label> <br />
+                    <GifComponent />
                     <button type="submit">Submit</button>
                 </form>
             </div>
