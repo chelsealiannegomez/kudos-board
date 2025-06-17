@@ -5,6 +5,7 @@ import './App.css'
 
 const App = () => {
   const [isHome, setIsHome] = useState(true);
+  const [boardID, setBoardID] = useState(-1);
 
   const home = {
     isHome : isHome,
@@ -15,9 +16,14 @@ const App = () => {
     setIsHome(false);
   }
 
+  const selectedBoard = {
+      boardID: boardID,
+      setBoardID: setBoardID
+  }
+
   return (
     <div className="body">
-      {isHome ? <Home home={home} /> : <Board home={home}/>}
+      {isHome ? <Home home={home} selectedBoard={selectedBoard}/> : <Board home={home} selectedBoard={selectedBoard}/>}
     </div>
   )
 }

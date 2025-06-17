@@ -1,9 +1,9 @@
 import { useState } from 'react'; 
-import './CreateModal.css'
+import './CreateModal.css';
 
-const CreateModal = ( { setVisibility, changes } ) => {
+const CreateCard = ( { setVisibility, changes } ) => {
     const { style, setStyle } = setVisibility;
-    const { isChange, setIsChange } = changes;
+    // const { isChange, setIsChange } = changes;
 
     const handleExit = () => {
         setStyle({display: "none"});
@@ -11,34 +11,22 @@ const CreateModal = ( { setVisibility, changes } ) => {
 
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
-    const [category, setCategory] = useState("Celebration");
+    const [message, setMessage] = useState("");
     const [gifUrl, setGifUrl] = useState("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjM4eDVzd283ZDgyM3YwNXZkM3JicTlsbXQxNXV5Z29wa2RtbXM2cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/peUx0SaUCRlBriP84y/giphy.gif")
 
-    const rand = Math.floor(Math.random() * (101));
 
-    const fetchGifs = async function() {
-        try {
-            const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${import.meta.env.VITE_GIPHY_API_KEY}&q=${category}&limit=1&offset=${rand}&rating=g&lang=en&bundle=messaging_non_clips`);
-            if (!response.ok) {
-                throw new Error(`Response status: ${response.status}`)
-            }
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error(error.message);
-        }
-    } 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = { title, author, category };
+
+        formData.upvotes = 0;
+        formData.pinned = false;
+
         setStyle({display: "none"});
         
         try {
-            const data = await fetchGifs();
-            setGifUrl(data.data[0].images.original.url);
-            formData.gif_path = data.data[0].images.original.url;
-
+            
             const response = await fetch (`http://localhost:3000/boards`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -59,14 +47,8 @@ const CreateModal = ( { setVisibility, changes } ) => {
                 <span onClick={handleExit}>&times;</span>
                 <form onSubmit={handleSubmit}>
                     <label>Title: <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}/></label> <br />
-                    <label>Author: <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)}/></label> <br />
-                    <label>Category:
-                        <select value={category} onChange={e => setCategory(e.target.value)} required>
-                            <option value="Celebration">Celebration</option>
-                            <option value="Inspiration">Inspiration</option>
-                            <option value="Thank you">Thank you</option>
-                        </select>
-                    </label>
+                    <label>Message: <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)}/></label> <br />
+                    <label>Author: <input type="text" value={message} onChange={(e) => setMessage(e.target.value)}/></label> <br />
                     <button type="submit">Submit</button>
                 </form>
             </div>
@@ -74,4 +56,4 @@ const CreateModal = ( { setVisibility, changes } ) => {
     )
 }
 
-export default CreateModal;
+export default CreateCard;

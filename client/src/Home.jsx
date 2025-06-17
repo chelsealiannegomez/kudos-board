@@ -21,9 +21,10 @@ async function fetchBoards() {
     }
 }
 
-const Home = ( { home } ) => {
+const Home = ( { home, selectedBoard } ) => {
     const [boards, setBoards] = useState([]);
-    const [createdNew, setCreatedNew] = useState(false);
+    const [isChange, setIsChange] = useState(false);
+    const {boardID, setBoardID} = selectedBoard;
 
     // Handle Search
     const [submittedQuery, setSubmittedQuery] = useState("");
@@ -40,17 +41,14 @@ const Home = ( { home } ) => {
         setSort: setSort
     }
 
-    // Handle Create New Button
-    const [boardID, setBoardID] = useState(-1);
+    // const selectedBoard = {
+    //     boardID: boardID,
+    //     setBoardID: setBoardID
+    // }
 
-    const selectedBoard = {
-        boardID: boardID,
-        setBoardID: setBoardID
-    }
-
-    const createNew = {
-        createdNew: createdNew,
-        setCreatedNew: setCreatedNew
+    const changes = {
+        isChange: isChange,
+        setIsChange: setIsChange
     }
 
     useEffect (() => {
@@ -63,11 +61,12 @@ const Home = ( { home } ) => {
     }, [boardID])
 
     useEffect(()=> {
-        console.log(createdNew);
         fetchBoards().then(data => {
             setBoards(data);
         })
-    }, [createdNew])
+    }, [isChange])
+
+    console.log(boardID);
     
     return (
         // <div onClick={handleBoard}>Open</div>
@@ -80,9 +79,9 @@ const Home = ( { home } ) => {
 
             <SortOptions sortMode={sortMode}/>
 
-            <NewBoard createNew={createNew}/>
+            <NewBoard changes={changes}/>
 
-            <DisplayBoards sort={sort} selectedBoard={selectedBoard} boards={boards}/>
+            <DisplayBoards sort={sort} selectedBoard={selectedBoard} boards={boards} changes={changes}/>
         </div>
     )
 }

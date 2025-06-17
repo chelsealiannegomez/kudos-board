@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import CreateModal from "./CreateModal";
+import CreateCard from "./CreateCard";
 import './NewBoard.css'
 
-const NewBoard = ( { changes } ) => {
+const NewCard = ( {  } ) => {
 
     const handleClick = () => {
         setStyle({display: "flex"});
@@ -19,9 +19,9 @@ const NewBoard = ( { changes } ) => {
     return (
         <div className="create">
             <button onClick={handleClick}>Create New</button>
-            <CreateModal setVisibility={setVisibility} changes={changes}/>
+            <CreateCard setVisibility={setVisibility}/>
         </div>
     )
 }
 
-export default NewBoard;
+export default NewCard;

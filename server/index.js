@@ -34,6 +34,25 @@ app.post('/boards', async (req, res) => {
     const newBoard = await prisma.board.create({
         data: { title, category, author, gif_path }
     })
+    res.send(201).json(newBoard);
+})
+
+// Delete board
+app.delete('/boards/:id', async (req, res) => {
+    const { id } = req.params;
+    const deletedBoard = await prisma.board.delete({
+        where: { id: parseInt(id) }
+    })
+    res.json(deletedBoard);
+})
+
+// Get board based on Category
+app.get('/boards/:category', async (req, res) => {
+    const { category } = req.params;
+    const cards = await prisma.board.findMany( {
+        where: { category : category },
+    });
+    res.json(cards)
 })
 
 // Add GIF
@@ -47,5 +66,27 @@ app.patch('/boards/:id/gif-path', async (req, res) => {
             gif_path,
         }
     })
-    res.json(updatedBoard);
+    res.send(201).json(updatedBoard);
+})
+
+// Get all cards given board ID
+app.get('/boards/:id/cards', async (req, res) => {
+    const { id } = req.params;
+    const cards = await prisma.card.findMany( {
+        where: { board_id : parseInt(id) },
+    });
+    res.json(cards)
+})
+
+// Create new card given board ID
+app.post('/boards/:board_id', async (req, res) => {
+    let { board_id } = req.params;
+
+    board_id = parseInt(board_id);
+    
+    const { title, author, message, gif_path, upvotes, pinned } = req.body;
+    const newCard = await prisma.card.create({
+        data: { title, author, message, gif_path, board_id, upvotes, pinned }
+    })
+    res.send(201).json(newCard);
 })
