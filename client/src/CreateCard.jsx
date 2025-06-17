@@ -2,7 +2,7 @@ import { useState } from 'react';
 import GifComponent from './GifComponent';
 import './CreateModal.css';
 
-const CreateCard = ( { setVisibility, changes, boardID } ) => {
+const CreateCard = ( { setVisibility, changes, boardID, setCards } ) => {
     const { style, setStyle } = setVisibility;
     // const { isChange, setIsChange } = changes;
 
@@ -13,7 +13,7 @@ const CreateCard = ( { setVisibility, changes, boardID } ) => {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [message, setMessage] = useState("");
-    const [gifUrl, setGifUrl] = useState("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjM4eDVzd283ZDgyM3YwNXZkM3JicTlsbXQxNXV5Z29wa2RtbXM2cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/peUx0SaUCRlBriP84y/giphy.gif")
+    const [gifUrl, setGifUrl] = useState("");
 
 
 
@@ -23,10 +23,11 @@ const CreateCard = ( { setVisibility, changes, boardID } ) => {
 
         formData.upvotes = 0;
         formData.pinned = false;
-        
+        formData.gif_path = gifUrl;
+        // formData.board_id = boardID
 
         setStyle({display: "none"});
-        
+        console.log('boardId', boardID)
         try {
             
             const response = await fetch (`http://localhost:3000/boards/${boardID}}`, {
@@ -35,11 +36,12 @@ const CreateCard = ( { setVisibility, changes, boardID } ) => {
                 body: JSON.stringify(formData),
             })
             const json = await response.json();
+            setCards(json);
             console.log('Success', json);
         } catch (error) {
             console.error('Error', error);
         } finally {
-            setIsChange(prev => !prev);
+            // setIsChange(prev => !prev);
         }
     }
     
@@ -51,7 +53,8 @@ const CreateCard = ( { setVisibility, changes, boardID } ) => {
                     <label>Title: <input type="text" value={title} placeholder="" onChange={(e) => setTitle(e.target.value)}/></label> <br />
                     <label>Message: <input type="text" value={author} placeholder="" onChange={(e) => setAuthor(e.target.value)}/></label> <br />
                     <label>Author: <input type="text" value={message}placeholder="" onChange={(e) => setMessage(e.target.value)}/></label> <br />
-                    <GifComponent />
+                    <GifComponent setGifUrl={setGifUrl}/>
+                    <label>GIF Image Address: <input type="text" value={gifUrl} readOnly></input></label>
                     <button type="submit">Submit</button>
                 </form>
             </div>
