@@ -66,10 +66,12 @@ const Home = ( { home, selectedBoard } ) => {
         })
     }, [isChange])
 
-    console.log(boardID);
+
+    useEffect(() => {
+        console.log("sort mode", sort);
+    }, [sort])
     
     return (
-        // <div onClick={handleBoard}>Open</div>
         <div className="app">
             <header>
                 Kudos Board
@@ -81,7 +83,7 @@ const Home = ( { home, selectedBoard } ) => {
 
             <NewBoard changes={changes}/>
 
-            <DisplayBoards sort={sort} selectedBoard={selectedBoard} boards={boards} changes={changes}/>
+            <DisplayBoards sort={sort} selectedBoard={selectedBoard} boards={boards} changes={changes} submittedQuery={submittedQuery}/>
         </div>
     )
 }

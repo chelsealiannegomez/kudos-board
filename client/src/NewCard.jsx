@@ -2,7 +2,7 @@ import { useState } from 'react';
 import CreateCard from "./CreateCard";
 import './NewBoard.css'
 
-const NewCard = ( {  } ) => {
+const NewCard = ( { boardID, setCards } ) => {
 
     const handleClick = () => {
         setStyle({display: "flex"});
@@ -19,7 +19,7 @@ const NewCard = ( {  } ) => {
     return (
         <div className="create">
             <button onClick={handleClick}>Create New</button>
-            <CreateCard setVisibility={setVisibility}/>
+            <CreateCard setVisibility={setVisibility} boardID={boardID} setCards={setCards}/>
         </div>
     )
 }

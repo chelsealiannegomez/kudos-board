@@ -4,9 +4,9 @@ const SortOptions = ( {sortMode} ) => {
     const { sort, setSort } = sortMode;
 
     const handleClick = (e) => {
-        (e) => setSort(e.target.value);
-        console.log(e.target.value);
+        setSort(e.target.value);
     }
+
     return (
         <div className="sort-options">
             <button value="recent" onClick={handleClick}>Recent</button>

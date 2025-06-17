@@ -38,7 +38,7 @@ const Board = ( { home, selectedBoard } ) => {
             <div onClick={onBack}>Back</div>
             <header>Board {boardID}</header>
             
-            <NewCard />
+            <NewCard boardID={boardID} setCards={setCards}/>
 
             <DisplayCards cards={cards}/>
         </div>

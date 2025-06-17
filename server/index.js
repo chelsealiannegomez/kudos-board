@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors());
 require('dotenv').config();
-const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
+// const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
 
 const PORT = 3000;
 
@@ -88,5 +88,10 @@ app.post('/boards/:board_id', async (req, res) => {
     const newCard = await prisma.card.create({
         data: { title, author, message, gif_path, board_id, upvotes, pinned }
     })
-    res.send(201).json(newCard);
+    
+    const cards = await prisma.card.findMany( {
+        where: { board_id : parseInt(board_id) },
+    });
+
+    res.json(cards);
 })
