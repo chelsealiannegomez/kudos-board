@@ -2,22 +2,39 @@ import { useState, useEffect } from 'react';
 import BoardCard from './BoardCard';
 import './DisplayBoards.css'
 
-const DisplayBoards = ( { sort, selectedBoard, boards, changes } ) => {
+const DisplayBoards = ( { sort, selectedBoard, boards, changes, submittedQuery } ) => {
     const {boardID, setBoardID} = selectedBoard;
-    const initial = [...boards];
-    const [filteredBoards, setFilteredBoards] = useState(initial);
+    const [filteredBoards, setFilteredBoards] = useState([...boards]);
 
     useEffect(() => {
         console.log("sort", sort);
         if (sort === "thank-you") {
-            console.log("thanks")
             const newBoard = boards.filter(obj => obj.category === "Thank you");
             setFilteredBoards(newBoard);
         }
+        else if (sort === "celebration") {
+            const newBoard = boards.filter(obj => obj.category === "Celebration");
+            setFilteredBoards(newBoard);
+        }
+        else if (sort === "inspiration") {
+            const newBoard = boards.filter(obj => obj.category === "Inspiration");
+            setFilteredBoards(newBoard);
+        }
         else {
-            setFilteredBoards(initial);
+            setFilteredBoards([...boards]);
         }
     }, [sort, boards]);
+
+    useEffect(() => {
+        if (submittedQuery !== "") {
+            const searchTerm = submittedQuery.toLowerCase();
+            const filteredObjects = boards.filter(obj => obj.title.toLowerCase().includes(searchTerm));
+            setFilteredBoards(filteredObjects);
+        }
+        else {
+            setFilteredBoards([...boards]);
+        }
+    }, [submittedQuery]);
 
     
     return (

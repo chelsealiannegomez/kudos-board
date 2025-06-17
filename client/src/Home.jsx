@@ -83,7 +83,7 @@ const Home = ( { home, selectedBoard } ) => {
 
             <NewBoard changes={changes}/>
 
-            <DisplayBoards sort={sort} selectedBoard={selectedBoard} boards={boards} changes={changes}/>
+            <DisplayBoards sort={sort} selectedBoard={selectedBoard} boards={boards} changes={changes} submittedQuery={submittedQuery}/>
         </div>
     )
 }

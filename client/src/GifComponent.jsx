@@ -15,8 +15,8 @@ const GifComponent = ( {setGifUrl} ) => {
         console.log(e.target.value);
     }
 
-    async function fetchSearchGifs() {
-        const { data: gifs } = await gf.search(submittedQuery, { sort: 'relevant', lang: 'es', limit: 12, type: 'gifs' })
+    async function fetchSearchGifs(query) {
+        const { data: gifs } = await gf.search(query, { sort: 'relevant', lang: 'es', limit: 12, type: 'gifs' })
         return gifs
     }
     
@@ -33,8 +33,9 @@ const GifComponent = ( {setGifUrl} ) => {
     // }
 
     const handleSearch = () => {
+        console.log("query", query);
         setSubmittedQuery(query);
-        fetchSearchGifs().then (response => {
+        fetchSearchGifs(query).then (response => {
             setGifs(response);
             console.log(response);
         })
