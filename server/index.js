@@ -28,6 +28,15 @@ app.get('/boards', async (req, res) => {
     res.json(boards)
 })
 
+// Get board given id
+app.get('/boards/:id', async (req, res) => {
+    const { id } = req.params;
+    const boards = await prisma.board.findUnique({
+        where: { id: parseInt(id) }
+    });
+    res.json(boards)
+})
+
 // Create board
 app.post('/boards', async (req, res) => {
     const { category, title, author, gif_path } = req.body;
@@ -42,6 +51,10 @@ app.delete('/boards/:id', async (req, res) => {
     const { id } = req.params;
     const deletedBoard = await prisma.board.delete({
         where: { id: parseInt(id) }
+    })
+    // Also delete cards under specified board
+    const cards = await prisma.card.deleteMany({
+        where: { board_id: parseInt(id) }
     })
     res.json(deletedBoard);
 })
@@ -94,4 +107,43 @@ app.post('/boards/:board_id', async (req, res) => {
     });
 
     res.json(cards);
+})
+
+// Delete card by id
+app.delete('/card/:id', async (req, res) => {
+    const { id } = req.params;
+    const deletedCard = await prisma.card.delete({
+        where: { id: parseInt(id) }
+    })
+    
+    res.json(deletedCard);
+})
+
+
+// Upvote
+app.patch('/cards/:id/upvote', async (req, res) => {
+    const { id } = req.params;
+
+    const upvotedCard = await prisma.card.update({
+        where: { id: parseInt(id) },
+        data: {
+            upvotes: {increment: 1}
+        }
+    })
+    res.send(201).json(upvotedCard);
+})
+
+// Pinned
+app.patch('/cards/:id/pin', async (req, res) => {
+    const { id } = req.params;
+    const { pinned, pinnedTime } = req.body;
+
+    const pinnedCard = await prisma.card.update({
+        where: { id: parseInt(id) },
+        data: {
+            pinned: !pinned,
+            pinnedTime: pinnedTime
+        }
+    })
+    res.send(201).json(pinnedCard);
 })

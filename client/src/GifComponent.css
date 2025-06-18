@@ -14,3 +14,12 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 }
+
+.gif-search {
+    height: 80%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}

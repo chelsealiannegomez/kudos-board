@@ -30,6 +30,14 @@ model Card {
   message   String
   gif_path  String
   upvotes   Int     
-  pinned    Boolean
+  pinnedTime    DateTime @default(now())
+  pinned    Boolean @default(false)
+  author    String
+}
+
+model Comment {
+  id        Int     @id @default(autoincrement())
+  card_id   Int
+  comment   String
   author    String
 }

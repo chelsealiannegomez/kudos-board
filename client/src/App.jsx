@@ -21,8 +21,15 @@ const App = () => {
       setBoardID: setBoardID
   }
 
+  const [isLight, setIsLight] = useState(false);
+
+  const toggleLight = () => {
+    setIsLight(!isLight);
+  }
+
   return (
-    <div className="body">
+    <div>
+      <button className="toggle-mode">Mode</button>
       {isHome ? <Home home={home} selectedBoard={selectedBoard}/> : <Board home={home} selectedBoard={selectedBoard}/>}
     </div>
   )

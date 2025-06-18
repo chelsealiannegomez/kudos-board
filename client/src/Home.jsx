@@ -74,7 +74,7 @@ const Home = ( { home, selectedBoard } ) => {
     return (
         <div className="app">
             <header>
-                Kudos Board
+                kudos board &nbsp; 🙌
             </header>
 
             <SearchBar query={query}/>
