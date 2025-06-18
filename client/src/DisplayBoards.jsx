@@ -39,11 +39,12 @@ const DisplayBoards = ( { sort, selectedBoard, boards, changes, submittedQuery }
     
     return (
         <div className="display-boards">
-            {
+            {filteredBoards.length === 0 ? <p>No boards to display</p> : 
+            (
                 filteredBoards.map(board => (
                     <BoardCard key={board.id} prop={board} handleSelect={() => setBoardID(board.id)} boards={boards} changes={changes}/>  
                 ))
-            }
+            )}
         </div>
     )
 }

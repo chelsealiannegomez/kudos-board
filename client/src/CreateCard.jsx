@@ -24,7 +24,6 @@ const CreateCard = ( { setVisibility, changes, boardID, setCards } ) => {
         formData.upvotes = 0;
         formData.pinned = false;
         formData.gif_path = gifUrl;
-        // formData.board_id = boardID
 
         setStyle({display: "none"});
         console.log('boardId', boardID)
@@ -50,11 +49,12 @@ const CreateCard = ( { setVisibility, changes, boardID, setCards } ) => {
             <div className="modal-content">
                 <span onClick={handleExit}>&times;</span>
                 <form onSubmit={handleSubmit}>
-                    <label>Title: <input type="text" value={title} placeholder="" onChange={(e) => setTitle(e.target.value)}/></label> <br />
-                    <label>Message: <input type="text" value={author} placeholder="" onChange={(e) => setAuthor(e.target.value)}/></label> <br />
+                    <label>Title: <input type="text" value={title} placeholder="" onChange={(e) => setTitle(e.target.value)} required/></label> <br />
+                    <label>Message: <input type="text" value={author} placeholder="" onChange={(e) => setAuthor(e.target.value)} required/></label> <br />
                     <label>Author: <input type="text" value={message}placeholder="" onChange={(e) => setMessage(e.target.value)}/></label> <br />
                     <GifComponent setGifUrl={setGifUrl}/>
                     <label>GIF Image Address: <input type="text" value={gifUrl} readOnly></input></label>
+                    <br />
                     <button type="submit">Submit</button>
                 </form>
             </div>

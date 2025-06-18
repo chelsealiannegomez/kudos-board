@@ -19,18 +19,6 @@ const GifComponent = ( {setGifUrl} ) => {
         const { data: gifs } = await gf.search(query, { sort: 'relevant', lang: 'es', limit: 12, type: 'gifs' })
         return gifs
     }
-    
-    // useEffect(() => {
-    //     fetchSearchGifs().then (response => {
-    //         setGifs(response);
-    //         console.log(response);
-    //     })
-    //     // console.log(setGifs);
-    // }, [query]);
-
-    // const handleSelect = () => {
-    //     setGifUrl()
-    // }
 
     const handleSearch = () => {
         console.log("query", query);
@@ -43,15 +31,17 @@ const GifComponent = ( {setGifUrl} ) => {
 
     return (
         <div style={{margin: 'auto', width: '100%'}}>
-            <input type="text" onChange={onSearchChange} />
-            <div onClick={handleSearch}>Search</div>
+            <div className="container">
+                <p>Search for GIFs:&nbsp;</p>
+                <input type="text" onChange={onSearchChange} className="gif-search"/>
+                <div onClick={handleSearch}>Search</div>
+            </div><br />
             
             <div className="gif-container">
             {
                 gifs.map((gif) => {
                     return (
-                        // <p key={gif.id}>Hello{gif.alt}</p>
-                        <img key={gif.id} src={gif.images.original.url} onClick={() => setGifUrl(gif.images.original.url)} className="gif"/>
+                        <img key={gif.id} src={gif.images.original.url} onClick={() => setGifUrl(gif.images.original.url)} className="gif"/>                        
                     )
                 })
             }

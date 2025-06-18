@@ -1,6 +1,6 @@
 .sort-options {
     height: 5vh;
-    background-color: beige;
+    background-color: white;
     display: flex; 
     align-items: center;
     justify-content: center;
@@ -9,4 +9,30 @@
 .sort-options button {
     height: 60%;
     margin: 1%;
+    background-color: #c3d5e0;
+    font-size: 16px;
+    border-radius: 5px;
+    border-color: #849baa;
+    padding-left: 20px;
+    padding-right: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.sort-options button:hover {
+    background-color: #9bb7c9;
+    font-size: 16px;
+    border-radius: 5px;
+    border-color: #b4c4cf;
+}
+
+.sort-options button.selected {
+    background-color: #9bb7c9;
+    border-color: #b4c4cf;
+}
+
+.sort-options button.selected:hover {
+    background-color: #9bb7c9;
+    border-color: #b4c4cf;
+    color: BLACK;
 }
