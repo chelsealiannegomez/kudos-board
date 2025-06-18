@@ -1,0 +1,17 @@
+.card-modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.card-modal-content {
+    background-color: white;
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    overflow: auto;
+}

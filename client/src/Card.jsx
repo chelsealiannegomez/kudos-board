@@ -1,10 +1,14 @@
+import { useState } from 'react';
+import ViewCard from './ViewCard';
 import './Card.css'
 import trash from './assets/trash.png'
+
 
 const Card = ( { prop, upvoteChange } ) => {
     const {upvote, setUpvote} = upvoteChange;
 
-    const handleUpvote = async function() {
+    const handleUpvote = async function(e) {
+        e.stopPropagation();
         try {
             const response = await fetch (`http://localhost:3000/cards/${prop.id}/upvote`, {
                 method: 'PATCH',
@@ -20,7 +24,8 @@ const Card = ( { prop, upvoteChange } ) => {
         }
     }
 
-    const handleDelete = async function() {
+    const handleDelete = async function(e) {
+        e.stopPropagation();
         try {
             const response = await fetch (`http://localhost:3000/card/${prop.id}`, {
                 method: 'DELETE',
@@ -35,7 +40,8 @@ const Card = ( { prop, upvoteChange } ) => {
         }
     }
 
-    const handlePin = async function() {
+    const handlePin = async function(e) {
+        e.stopPropagation();
         const current = new Date().toISOString();
         try {
             const response = await fetch (`http://localhost:3000/cards/${prop.id}/pin`, {
@@ -54,16 +60,31 @@ const Card = ( { prop, upvoteChange } ) => {
         }
     }
 
+    const handleClick = () => {
+        setStyle({display: "flex"});
+    }
+
+    const [style, setStyle] = useState({display: "none"});
+
+    const setVisibility = {
+        style : style,
+        setStyle : setStyle
+    }
+
     return (
-        <div className="card">
-            <img src={prop.gif_path} />
-            <h1>{prop.title}</h1>
-            <p>{prop.message}</p>
-            <h2>{prop.author}</h2>
-            <img src={trash} className="trash-icon" onClick={handleDelete}/>
-            {prop.upvotes}<button onClick={handleUpvote}>Upvote</button>
-            <button onClick={handlePin} className={prop.pinned ? "pinned" : ""}>{prop.pinned ? "Pinned" : "Pin"}</button>
-        </div>
+        <>
+            <div className="card" onClick={handleClick}>
+                <img src={prop.gif_path} />
+                <h1>{prop.title}</h1>
+                <p>{prop.message}</p>
+                <h2>{prop.author}</h2>
+                <img src={trash} className="trash-icon" onClick={handleDelete}/>
+                {prop.upvotes}<button onClick={handleUpvote}>Upvote</button>
+                <button onClick={handlePin} className={prop.pinned ? "pinned" : ""}>{prop.pinned ? "Pinned" : "Pin"}</button>
+            </div>
+            <ViewCard prop={prop} setVisibility={setVisibility}/>
+        </>
+        
     )
 }
 
