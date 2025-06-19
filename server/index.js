@@ -101,12 +101,8 @@ app.post('/boards/:board_id', async (req, res) => {
     const newCard = await prisma.card.create({
         data: { title, author, message, gif_path, board_id, upvotes, pinned }
     })
-    
-    const cards = await prisma.card.findMany( {
-        where: { board_id : parseInt(board_id) },
-    });
 
-    res.json(cards);
+    res.json(newCard);
 })
 
 // Delete card by id
@@ -130,7 +126,7 @@ app.patch('/cards/:id/upvote', async (req, res) => {
             upvotes: {increment: 1}
         }
     })
-    res.send(201).json(upvotedCard);
+    res.send(201);
 })
 
 // Pinned
@@ -146,4 +142,27 @@ app.patch('/cards/:id/pin', async (req, res) => {
         }
     })
     res.send(201).json(pinnedCard);
+})
+
+// Get all comments
+app.get('/card/:id/comments', async (req, res) => {
+    const { id } = req.params;
+
+    const comments = await prisma.comment.findMany( {
+        where: { card_id : parseInt(id) },
+    });
+
+    res.send(comments);
+})
+
+// Add comment
+app.post('/card/:id/comment', async (req, res) => {
+    const { id } = req.params;
+    const { author, message } = req.body;
+
+    const newComment = await prisma.comment.create({
+        data: { card_id: parseInt(id), author, message }
+    })
+
+    res.send(201).json(newComment);
 })
