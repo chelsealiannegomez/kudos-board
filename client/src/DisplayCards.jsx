@@ -3,9 +3,10 @@ import Card from './Card';
 import './DisplayCards.css';
 
 const DisplayCards = ( { cards, upvoteChange } ) => {
-    const [sortedCards, setSortedCards] = useState([...cards]);
+    const [sortedCards, setSortedCards] = useState([]);
 
     useEffect(() => {
+        if (!Array.isArray(cards)) return;
         const sortedCards = [...cards].sort(function (x,y) {
             const xPinned = (x.pinned ? 1 : 0);
             const yPinned = (y.pinned ? 1 : 0);
@@ -20,6 +21,7 @@ const DisplayCards = ( { cards, upvoteChange } ) => {
         })
         setSortedCards(sortedCards);
         console.log(sortedCards);
+    
     }, [cards])
 
     return (

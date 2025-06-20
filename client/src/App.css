@@ -3,10 +3,18 @@
 }
 
 .invert {
-  filter: invert(100%);
+  filter: invert(1) hue-rotate(180deg);
 }
 
 .toggle-mode {
   position: absolute;
   right: 0;
+}
+
+.invert img {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+.invert button {
+  filter: invert(1) hue-rotate(180deg) !important;
 }

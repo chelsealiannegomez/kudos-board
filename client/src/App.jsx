@@ -28,8 +28,8 @@ const App = () => {
   }
 
   return (
-    <div>
-      <button className="toggle-mode">Mode</button>
+    <div className={isLight ? "invert" : ""}>
+      <button className="toggle-mode" onClick={toggleLight}>{isLight ? "Toggle Light Mode" : "Toggle Dark Mode"}</button>
       {isHome ? <Home home={home} selectedBoard={selectedBoard}/> : <Board home={home} selectedBoard={selectedBoard}/>}
     </div>
   )

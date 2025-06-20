@@ -66,7 +66,7 @@ const Board = ( { home, selectedBoard } ) => {
             <div onClick={onBack} className="back">Back</div>
             <header>{title}</header>
             
-            <NewCard boardID={boardID} setCards={setCards}/>
+            <NewCard boardID={boardID} setCards={setCards} upvoteChange={upvoteChange}/>
 
             <DisplayCards cards={cards} upvoteChange={upvoteChange}/>
         </div>

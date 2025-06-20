@@ -164,5 +164,5 @@ app.post('/card/:id/comment', async (req, res) => {
         data: { card_id: parseInt(id), author, message }
     })
 
-    res.send(201).json(newComment);
+    res.status(201).json(newComment);
 })
