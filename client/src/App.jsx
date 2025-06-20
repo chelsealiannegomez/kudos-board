@@ -31,6 +31,9 @@ const App = () => {
     <div className={isLight ? "invert" : ""}>
       <button className="toggle-mode" onClick={toggleLight}>{isLight ? "Toggle Light Mode" : "Toggle Dark Mode"}</button>
       {isHome ? <Home home={home} selectedBoard={selectedBoard}/> : <Board home={home} selectedBoard={selectedBoard}/>}
+      <footer>
+       © Chelsea Lianne Gomez | 2025
+      </footer>
     </div>
   )
 }

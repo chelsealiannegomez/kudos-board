@@ -76,12 +76,14 @@ const Card = ( { prop, upvoteChange } ) => {
             <div className="card" onClick={handleClick}>
                 <img src={prop.gif_path} />
                 <h1>{prop.title}</h1>
-                <p>{prop.message}</p>
                 <h2>{prop.author}</h2>
+                <p>{prop.message}</p>
                 <img src={trash} className="trash-icon" onClick={handleDelete}/>
-                {prop.upvotes}<button onClick={handleUpvote}>Upvote</button>
-                <button onClick={handlePin} className={prop.pinned ? "pinned" : ""}>{prop.pinned ? "Pinned" : "Pin"}</button>
-            </div>
+                <div className="buttons">
+                    {prop.upvotes}&nbsp;<button onClick={handleUpvote}>Upvote</button>&nbsp;
+                    <button onClick={handlePin} className={prop.pinned ? "pinned" : ""}>{prop.pinned ? "Pinned" : "Pin"}</button>
+                </div>
+                </div>
             <ViewCard prop={prop} setVisibility={setVisibility}/>
         </>
         

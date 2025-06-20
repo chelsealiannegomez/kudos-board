@@ -18,3 +18,11 @@
 .invert button {
   filter: invert(1) hue-rotate(180deg) !important;
 }
+
+footer {
+  background-color: #8395c1;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

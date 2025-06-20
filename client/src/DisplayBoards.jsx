@@ -7,7 +7,10 @@ const DisplayBoards = ( { sort, selectedBoard, boards, changes, submittedQuery }
     const [filteredBoards, setFilteredBoards] = useState([...boards]);
 
     useEffect(() => {
-        console.log("sort", sort);
+        if (sort === "recent") {
+            const newBoard = boards.slice(0,6);
+            setFilteredBoards(newBoard);
+        }
         if (sort === "thank-you") {
             const newBoard = boards.filter(obj => obj.category === "Thank you");
             setFilteredBoards(newBoard);

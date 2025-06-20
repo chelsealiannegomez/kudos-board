@@ -27,6 +27,7 @@ const GifComponent = ( {setGifUrl} ) => {
             setGifs(response);
             console.log(response);
         })
+        setSubmittedQuery("");
     }
 
     return (

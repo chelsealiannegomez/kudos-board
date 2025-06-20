@@ -9,6 +9,7 @@ const SortOptions = ( {sortMode} ) => {
 
     return (
         <div className="sort-options">
+            <button value="all" onClick={handleClick} className={sort === 'all' ? "selected" : ""}>All</button>
             <button value="recent" onClick={handleClick} className={sort === 'recent' ? "selected" : ""}>Recent</button>
             <button value="celebration" onClick={handleClick} className={sort === 'celebration' ? "selected" : ""}>Celebration</button>
             <button value="thank-you" onClick={handleClick} className={sort === 'thank-you' ? "selected" : ""}>Thank you</button>

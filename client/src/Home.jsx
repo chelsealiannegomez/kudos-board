@@ -35,7 +35,7 @@ const Home = ( { home, selectedBoard } ) => {
     }
 
     // Handle Sort Mode
-    const [sort, setSort] = useState("recent");
+    const [sort, setSort] = useState("all");
     const sortMode = {
         sort: sort,
         setSort: setSort

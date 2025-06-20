@@ -41,6 +41,10 @@ const CreateCard = ( { setVisibility, boardID, setCards, upvoteChange } ) => {
             console.error('Error', error);
         } finally {
             setUpvote(prev => !prev);
+            setTitle("");
+            setAuthor("");
+            setMessage("");
+            setGifUrl("");
         }
     }
     
@@ -50,8 +54,8 @@ const CreateCard = ( { setVisibility, boardID, setCards, upvoteChange } ) => {
                 <span onClick={handleExit}>&times;</span>
                 <form onSubmit={handleSubmit}>
                     <label>Title: <input type="text" value={title} placeholder="" onChange={(e) => setTitle(e.target.value)} required/></label> <br />
-                    <label>Message: <input type="text" value={author} placeholder="" onChange={(e) => setAuthor(e.target.value)} required/></label> <br />
-                    <label>Author: <input type="text" value={message}placeholder="" onChange={(e) => setMessage(e.target.value)}/></label> <br />
+                    <label>Author: <input type="text" value={author}placeholder="" onChange={(e) => setAuthor(e.target.value)}/></label> <br />
+                    <label>Message: <input type="text" value={message} placeholder="" onChange={(e) => setMessage(e.target.value)} required/></label> <br />
                     <GifComponent setGifUrl={setGifUrl}/>
                     <label>GIF Image Address: <input type="text" value={gifUrl} readOnly></input></label>
                     <br />

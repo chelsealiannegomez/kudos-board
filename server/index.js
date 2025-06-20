@@ -111,7 +111,10 @@ app.delete('/card/:id', async (req, res) => {
     const deletedCard = await prisma.card.delete({
         where: { id: parseInt(id) }
     })
-    
+    // Also delete comments of deleted card
+    const comments = await prisma.card.deleteMany({
+        where: { card_id: parseInt(id) }
+    })
     res.json(deletedCard);
 })
 

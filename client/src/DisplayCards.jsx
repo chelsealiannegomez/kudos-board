@@ -10,13 +10,13 @@ const DisplayCards = ( { cards, upvoteChange } ) => {
         const sortedCards = [...cards].sort(function (x,y) {
             const xPinned = (x.pinned ? 1 : 0);
             const yPinned = (y.pinned ? 1 : 0);
-            if (yPinned - xPinned) return (yPinned-xPinned);
+            if (yPinned !== xPinned) return (yPinned-xPinned);
 
-            const xTime = new Date(x.pinnedTime).getTime();
-            const yTime = new Date(y.pinnedTime).getTime();
-
-            if (xTime !== yTime) {return yTime - xTime};
-            
+            if (x.pinned && b.pinned) {
+                const xTime = new Date(x.pinnedTime).getTime();
+                const yTime = new Date(y.pinnedTime).getTime();
+                return yTime - xTime;
+            }            
             return (x.id-y.id);
         })
         setSortedCards(sortedCards);
