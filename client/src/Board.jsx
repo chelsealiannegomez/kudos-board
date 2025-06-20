@@ -5,7 +5,7 @@ import './Board.css'
 
 async function fetchCards(id) {
     try {
-        const response = await fetch(`http://localhost:3000/boards/${id}/cards`, {
+        const response = await fetch(`https://kudos-board-clh3.onrender.com/${id}/cards`, {
             method: "GET",
         })
         if (!response.ok) {
@@ -20,7 +20,7 @@ async function fetchCards(id) {
 
 async function fetchBoard(id) {
     try {
-        const response = await fetch(`http://localhost:3000/boards/${id}`, {
+        const response = await fetch(`https://kudos-board-clh3.onrender.com/boards/${id}`, {
             method: "GET",
         })
         if (!response.ok) {
