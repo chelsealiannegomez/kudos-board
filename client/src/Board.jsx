@@ -5,7 +5,7 @@ import './Board.css'
 
 async function fetchCards(id) {
     try {
-        const response = await fetch(`https://kudos-board-clh3.onrender.com/${id}/cards`, {
+        const response = await fetch(`https://kudos-board-clh3.onrender.com/boards/${id}/cards`, {
             method: "GET",
         })
         if (!response.ok) {
