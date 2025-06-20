@@ -8,6 +8,7 @@
     flex-direction: column;
     flex: 0 1 15%;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .board-card img {
@@ -33,4 +34,8 @@
 
 .board-card p {
     margin: 0 0 20px 0;
+}
+
+.board-card button:hover {
+    cursor: pointer;
 }
