@@ -135,19 +135,17 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+[Link to Walkthrough Video](https://www.loom.com/share/f54de23477a44507baae84564a89adbd?sid=e8f9613e-70ab-4663-ac75-8a6857fb7510)
 
 ### Reflection
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Yes, the labs helped especially with designing endpoints and with configuring the backend and frontend together.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+I would have styled it a bit more to make it more aesthetically pleasing, but I'm happy with how it looks so far.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
@@ -155,8 +153,8 @@ Add your response here
 
 ### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
+- [GIPHY SDK and API](https://developers.giphy.com/)
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Shout out to Terrence Butler for always answering my questions when I run into issues. Thank you also to my intern manager, Ajay Ganesh, for always being a great resource for my questions.
