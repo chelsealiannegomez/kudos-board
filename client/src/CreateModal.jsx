@@ -39,7 +39,7 @@ const CreateModal = ( { setVisibility, changes } ) => {
             setGifUrl(data.data[0].images.original.url);
             formData.gif_path = data.data[0].images.original.url;
 
-            const response = await fetch (`http://localhost:3000/boards`, {
+            const response = await fetch (`https://kudos-board-clh3.onrender.com/boards`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),

@@ -7,7 +7,7 @@ import './Home.css'
 
 async function fetchBoards() {
     try {
-        const response = await fetch('http://localhost:3000/boards', {
+        const response = await fetch('https://kudos-board-clh3.onrender.com/boards', {
             method: "GET",
         })
         if (!response.ok) {

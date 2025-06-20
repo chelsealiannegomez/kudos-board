@@ -29,7 +29,7 @@ const CreateCard = ( { setVisibility, boardID, setCards, upvoteChange } ) => {
         console.log('boardId', boardID)
         try {
             
-            const response = await fetch (`http://localhost:3000/boards/${boardID}}`, {
+            const response = await fetch (`https://kudos-board-clh3.onrender.com/boards/${boardID}}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
