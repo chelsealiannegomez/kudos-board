@@ -2,9 +2,9 @@ import { useState } from 'react';
 import GifComponent from './GifComponent';
 import './CreateModal.css';
 
-const CreateCard = ( { setVisibility, changes, boardID, setCards } ) => {
+const CreateCard = ( { setVisibility, boardID, setCards, upvoteChange } ) => {
     const { style, setStyle } = setVisibility;
-    // const { isChange, setIsChange } = changes;
+    const { upvote, setUpvote } = upvoteChange;
 
     const handleExit = () => {
         setStyle({display: "none"});
@@ -40,7 +40,7 @@ const CreateCard = ( { setVisibility, changes, boardID, setCards } ) => {
         } catch (error) {
             console.error('Error', error);
         } finally {
-            // setIsChange(prev => !prev);
+            setUpvote(prev => !prev);
         }
     }
     

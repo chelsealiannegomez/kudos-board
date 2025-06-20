@@ -8,6 +8,8 @@
     flex-direction: column;
     flex: 0 1 15%;
     position: relative;
+    justify-content: center;
+    text-align: center;
 }
 
 .card img {
@@ -48,4 +50,10 @@ img.trash-icon:hover {
 
 button.pinned {
     background-color: #baccd6;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px #8395c1;
+    transition: 0.3s;
+    cursor: pointer;
 }

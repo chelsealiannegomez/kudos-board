@@ -38,6 +38,6 @@ model Card {
 model Comment {
   id        Int     @id @default(autoincrement())
   card_id   Int
-  comment   String
+  message   String
   author    String
 }
