@@ -12,7 +12,7 @@ const DisplayCards = ( { cards, upvoteChange } ) => {
             const yPinned = (y.pinned ? 1 : 0);
             if (yPinned !== xPinned) return (yPinned-xPinned);
 
-            if (x.pinned && b.pinned) {
+            if (x.pinned && y.pinned) {
                 const xTime = new Date(x.pinnedTime).getTime();
                 const yTime = new Date(y.pinnedTime).getTime();
                 return yTime - xTime;
