@@ -44,12 +44,20 @@ const CreateModal = ( { setVisibility, changes } ) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             })
+            setTitle("");
+            setAuthor("");
+            setCategory("Celebration");
+            setGifUrl("");
             const json = await response.json();
             console.log('Success', json);
         } catch (error) {
             console.error('Error', error);
         } finally {
             setIsChange(prev => !prev);
+            setTitle("");
+            setAuthor("");
+            setCategory("Celebration");
+            setGifUrl("");
         }
     }
     

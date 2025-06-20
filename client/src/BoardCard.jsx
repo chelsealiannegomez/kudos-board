@@ -6,7 +6,7 @@ const BoardCard = ( { handleSelect, prop, changes } ) => {
     const handleDelete = async (e) => {
         e.preventDefault();        
         try {
-            const response = await fetch (`https://kudos-board-clh3.onrender.com/${prop.id}`, {
+            const response = await fetch (`https://kudos-board-clh3.onrender.com/boards/${prop.id}`, {
                 method: 'DELETE',
             })
             const json = await response.json();

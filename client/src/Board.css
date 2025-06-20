@@ -1,3 +1,19 @@
 .back {
     position: absolute;
+    background-color: #9ac2dd;
+    font-size: 16px;
+    border-radius: 5px;
+    border-color: #849baa;
+    padding-left: 15px;
+    padding-right: 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.back:hover {
+    background-color: #9bb7c9;
+    font-size: 16px;
+    border-radius: 5px;
+    border-color: #b4c4cf;
+   
 }
