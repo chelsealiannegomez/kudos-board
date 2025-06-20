@@ -66,7 +66,7 @@ const CreateModal = ( { setVisibility, changes } ) => {
             <div className="modal-content">
                 <span onClick={handleExit}>&times;</span>
                 <form onSubmit={handleSubmit}>
-                    <label>Title: <input type="text" value={title} placeholder="" onChange={(e) => setTitle(e.target.value)}/></label> <br />
+                    <label>Title: <input type="text" value={title} placeholder="" onChange={(e) => setTitle(e.target.value)} required/></label> <br />
                     <label>Author: <input type="text" value={author} placeholder="" onChange={(e) => setAuthor(e.target.value)}/></label> <br />
                     <label>Category:
                         <select value={category} onChange={e => setCategory(e.target.value)} required>
