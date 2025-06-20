@@ -10,7 +10,7 @@ const Card = ( { prop, upvoteChange } ) => {
     const handleUpvote = async function(e) {
         e.stopPropagation();
         try {
-            const response = await fetch (`http://localhost:3000/cards/${prop.id}/upvote`, {
+            const response = await fetch (`https://kudos-board-clh3.onrender.com/cards/${prop.id}/upvote`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -27,7 +27,7 @@ const Card = ( { prop, upvoteChange } ) => {
     const handleDelete = async function(e) {
         e.stopPropagation();
         try {
-            const response = await fetch (`http://localhost:3000/card/${prop.id}`, {
+            const response = await fetch (`https://kudos-board-clh3.onrender.com/card/${prop.id}`, {
                 method: 'DELETE',
             })
             const json = await response.json();
@@ -44,7 +44,7 @@ const Card = ( { prop, upvoteChange } ) => {
         e.stopPropagation();
         const current = new Date().toISOString();
         try {
-            const response = await fetch (`http://localhost:3000/cards/${prop.id}/pin`, {
+            const response = await fetch (`https://kudos-board-clh3.onrender.com/cards/${prop.id}/pin`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({pinnedTime: current, pinned: prop.pinned})

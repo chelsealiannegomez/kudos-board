@@ -3,7 +3,7 @@ import './ViewCard.css'
 
 async function fetchComments(id) {
     try {
-        const response = await fetch(`http://localhost:3000/card/${id}/comments`, {
+        const response = await fetch(`https://kudos-board-clh3.onrender.com/card/${id}/comments`, {
             method: "GET",
         })
         if (!response.ok) {
@@ -36,7 +36,7 @@ const ViewCard = ( {prop, setVisibility} ) => {
         // setStyle({display: "none"});
         try {
             
-            const response = await fetch (`http://localhost:3000/card/${prop.id}/comment`, {
+            const response = await fetch (`https://kudos-board-clh3.onrender.com/card/${prop.id}/comment`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
