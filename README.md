@@ -149,7 +149,7 @@ I would have styled it a bit more to make it more aesthetically pleasing, but I'
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I think my project demo went well! It was fun to explain what my project did and how I implemented some features.
 
 ### Open-source libraries used
 
